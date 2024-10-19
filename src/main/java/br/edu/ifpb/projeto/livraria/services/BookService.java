@@ -23,6 +23,26 @@ public class BookService {
                 .collect(Collectors.toList());
     }
 
+    public List<BookResponseDTO> getBooksByAuthor(String author) {
+        return bookRepository.findBooksByAuthor(author)
+                .stream()
+                .map(this::convertToBookResponseDTO)
+                .collect(Collectors.toList());
+    }
+
+    public BookResponseDTO getBookByTitle(String title) {
+        return bookRepository.findBookByTitle(title)
+                .map(this::convertToBookResponseDTO)
+                .orElseThrow(() -> new RuntimeException("Book not found with title: " + title));
+    }
+
+    public List<BookResponseDTO> getBooksByGenre(String genre) {
+        return bookRepository.findBooksByGenre(genre)
+                .stream()
+                .map(this::convertToBookResponseDTO)
+                .collect(Collectors.toList());
+    }
+
     private List<Book> getAllBooksData() {
         List<Book> books = bookRepository.findAll();
         if (books.isEmpty()) {
@@ -31,15 +51,12 @@ public class BookService {
         return books;
     }
 
-
     private BookResponseDTO convertToBookResponseDTO(Book bookInfo) {
-        String bookName = String.format(bookInfo.getTitle());
         return new BookResponseDTO(
-                bookName,
+                bookInfo.getTitle(),
                 bookInfo.getAuthor(),
                 bookInfo.getGenre(),
                 bookInfo.getUrl()
         );
     }
-
 }

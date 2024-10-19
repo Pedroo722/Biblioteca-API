@@ -8,7 +8,6 @@ import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Repository;
 
-
 import java.util.*;
 
 @Repository
@@ -20,8 +19,18 @@ public class BookRepository {
         return mongoTemplate.findAll(Book.class);
     }    
 
-    public Optional<Book> findBookByName(String name) {
-        Query query = Query.query(Criteria.where("TITULO").is(name));
+    public Optional<Book> findBookByTitle(String title) {
+        Query query = Query.query(Criteria.where("Titulo").is(title));
         return Optional.ofNullable(mongoTemplate.findOne(query, Book.class));
+    }
+
+    public List<Book> findBooksByAuthor(String author) {
+        Query query = Query.query(Criteria.where("Autor").is(author));
+        return mongoTemplate.find(query, Book.class);
+    }
+
+    public List<Book> findBooksByGenre(String genre) {
+        Query query = Query.query(Criteria.where("Genero").is(genre));
+        return mongoTemplate.find(query, Book.class);
     }
 }
