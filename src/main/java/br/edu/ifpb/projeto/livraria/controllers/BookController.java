@@ -3,6 +3,7 @@ package br.edu.ifpb.projeto.livraria.controllers;
 import br.edu.ifpb.projeto.livraria.dtos.*;
 import br.edu.ifpb.projeto.livraria.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,46 +16,51 @@ public class BookController {
     private BookService service;
 
     @GetMapping("/info/all")
-    public ResponseEntity<String> getBooksInfo() {
-        List<BookResponseDTO> books = service.getBooksInformation();
-        return ResponseEntity.ok("Successfully retrieved all books: " + books);
+    public ResponseEntity<List<BookResponseDTO>> getBooksInfo() {
+        return ResponseEntity.ok(service.getBooksInformation());
     }
 
     @GetMapping("/info/author")
-    public ResponseEntity<String> getBooksByAuthor(@RequestParam String author) {
-        List<BookResponseDTO> books = service.getBooksByAuthor(author);
-        return ResponseEntity.ok("Successfully retrieved books by author '" + author + "': " + books);
+    public ResponseEntity<List<BookResponseDTO>> getBooksByAuthor(@RequestParam String author) {
+        return ResponseEntity.ok(service.getBooksByAuthor(author));
     }
 
     @GetMapping("/info/title")
-    public ResponseEntity<String> getBookByTitle(@RequestParam String title) {
-        BookResponseDTO book = service.getBookByTitle(title);
-        return ResponseEntity.ok("Successfully retrieved book: " + book);
+    public ResponseEntity<BookResponseDTO> getBookByTitle(@RequestParam String title) {
+        return ResponseEntity.ok(service.getBookByTitle(title));
     }
 
     @GetMapping("/info/genre")
-    public ResponseEntity<String> getBooksByGenre(@RequestParam String genre) {
-        List<BookResponseDTO> books = service.getBooksByGenre(genre);
-        return ResponseEntity.ok("Successfully retrieved books in genre '" + genre + "': " + books);
+    public ResponseEntity<List<BookResponseDTO>> getBooksByGenre(@RequestParam String genre) {
+        return ResponseEntity.ok(service.getBooksByGenre(genre));
     }
 
     @PostMapping("/create")
-    public ResponseEntity<String> createBook(@RequestBody BookRequestDTO bookRequestDTO) {
-        BookResponseDTO createdBook = service.createBook(bookRequestDTO);
-        return ResponseEntity.ok("Successfully created book: " + createdBook);
+    public ResponseEntity<?> createBook(@RequestBody BookRequestDTO bookRequestDTO) {
+        try {
+            BookResponseDTO createdBook = service.createBook(bookRequestDTO);
+            return ResponseEntity.status(HttpStatus.CREATED).body(createdBook); 
+        } catch (Exception e) {
+            String errorMessage = "Error creating book: " + e.getMessage();
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorMessage); 
+        }
     }
 
     @PutMapping("/update/title")
-    public ResponseEntity<String> updateBook(@RequestParam String title, @RequestBody BookRequestDTO bookRequestDTO) {
-        BookResponseDTO updatedBook = service.updateBookByTitle(title, bookRequestDTO);
-        return ResponseEntity.ok("Successfully updated book: " + updatedBook);
+    public ResponseEntity<?> updateBook(@RequestParam String title, @RequestBody BookRequestDTO bookRequestDTO) {
+        try {
+            BookResponseDTO updatedBook = service.updateBookByTitle(title, bookRequestDTO);
+            return ResponseEntity.ok(updatedBook); 
+        } catch (Exception e) {
+            String errorMessage = "Error updating book: " + e.getMessage();
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorMessage); 
+        }
     }
 
     @DeleteMapping("/delete/title")
     public ResponseEntity<String> deleteBook(@RequestParam String title) {
         service.deleteBookByTitle(title);
-        String responseMessage = String.format("Successfully deleted book: %s", title);
+        String responseMessage = String.format("Book: %s has been deleted", title);
         return ResponseEntity.ok(responseMessage);
     }
 }
-
