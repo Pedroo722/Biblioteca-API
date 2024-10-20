@@ -51,8 +51,35 @@ public class BookService {
         return books;
     }
 
+    public BookResponseDTO createBook(BookRequestDTO bookRequestDTO) {
+        Book book = new Book(null, bookRequestDTO.getTitle(), bookRequestDTO.getAuthor(), bookRequestDTO.getGenre(), bookRequestDTO.getUrl());
+        Book savedBook = bookRepository.save(book);
+        return convertToBookResponseDTO(savedBook);
+    }    
+
+    public BookResponseDTO updateBookByTitle(String title, BookRequestDTO bookRequestDTO) {
+        Book bookToUpdate = bookRepository.findBookByTitle(title)
+            .orElseThrow(() -> new RuntimeException("Book not found with title: " + title));
+
+        bookToUpdate.setTitle(bookRequestDTO.getTitle());
+        bookToUpdate.setAuthor(bookRequestDTO.getAuthor());
+        bookToUpdate.setGenre(bookRequestDTO.getGenre());
+        bookToUpdate.setUrl(bookRequestDTO.getUrl());
+
+        Book updatedBook = bookRepository.save(bookToUpdate);
+        return convertToBookResponseDTO(updatedBook);
+    }
+
+    public void deleteBookByTitle(String title) {
+        Book bookToDelete = bookRepository.findBookByTitle(title)
+            .orElseThrow(() -> new RuntimeException("Book not found with title: " + title));
+
+        bookRepository.delete(bookToDelete);
+    }   
+
     private BookResponseDTO convertToBookResponseDTO(Book bookInfo) {
         return new BookResponseDTO(
+                bookInfo.getId(),
                 bookInfo.getTitle(),
                 bookInfo.getAuthor(),
                 bookInfo.getGenre(),

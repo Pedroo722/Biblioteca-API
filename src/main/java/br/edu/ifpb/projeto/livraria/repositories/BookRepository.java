@@ -33,4 +33,16 @@ public class BookRepository {
         Query query = Query.query(Criteria.where("Genero").is(genre));
         return mongoTemplate.find(query, Book.class);
     }
+
+    public Book save(Book book) {
+        return mongoTemplate.save(book);
+    }
+
+    public Optional<Book> findById(String id) {
+        return Optional.ofNullable(mongoTemplate.findById(id, Book.class));
+    }
+    
+    public void delete(Book book) {
+        mongoTemplate.remove(book);
+    }
 }
