@@ -1,4 +1,4 @@
-# Clínica Médica API
+# Biblioteca API
 
 Projeto back-end criado para a disciplina de Análise e Desenvolvimento de Projetos. A aplicação foi construída utilizando **Spring Boot** e **MongoDB** como banco de dados, visando criar uma api para a consulta de informações de um projeto java pré-existente de um [Sistema de Gerenciamento de Livros](https://github.com/Thigas014/Projeto_Livros/), desenvolvido como parte da disciplina de Programação Orientada a Objetos.
 
