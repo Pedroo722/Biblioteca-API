@@ -34,7 +34,7 @@ Membros
 
 - **Java 17** ou superior
 - **Maven** 3.8.1+
-- **PostgreSQL**
+- **MongoDB**
 
 ### Passos para execução
 
