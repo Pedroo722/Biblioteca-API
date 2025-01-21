@@ -33,7 +33,7 @@ public class BookService {
     public BookResponseDTO getBookByTitle(String title) {
         return bookRepository.findBookByTitle(title)
                 .map(this::convertToBookResponseDTO)
-                .orElseThrow(() -> new RuntimeException("Book not found with title: " + title));
+                .orElseThrow(() -> new RuntimeException("Livro não encontrado com o título: " + title));
     }
 
     public List<BookResponseDTO> getBooksByGenre(String genre) {
@@ -59,7 +59,7 @@ public class BookService {
 
     public BookResponseDTO updateBookByTitle(String title, BookRequestDTO bookRequestDTO) {
         Book bookToUpdate = bookRepository.findBookByTitle(title)
-            .orElseThrow(() -> new RuntimeException("Book not found with title: " + title));
+            .orElseThrow(() -> new RuntimeException("Livro não encontrado com o título: " + title));
 
         bookToUpdate.setTitle(bookRequestDTO.getTitle());
         bookToUpdate.setAuthor(bookRequestDTO.getAuthor());
@@ -72,7 +72,7 @@ public class BookService {
 
     public void deleteBookByTitle(String title) {
         Book bookToDelete = bookRepository.findBookByTitle(title)
-            .orElseThrow(() -> new RuntimeException("Book not found with title: " + title));
+            .orElseThrow(() -> new RuntimeException("Livro não encontrado com o título: " + title));
 
         bookRepository.delete(bookToDelete);
     }   

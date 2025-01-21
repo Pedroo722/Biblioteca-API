@@ -1,11 +1,10 @@
 # Biblioteca API
 
-Projeto back-end criado para a disciplina de Análise e Desenvolvimento de Projetos. A aplicação foi construída utilizando **Spring Boot** e **MongoDB** como banco de dados, visando criar uma api para a consulta de informações de um projeto java pré-existente de um [Sistema de Gerenciamento de Livros](https://github.com/Thigas014/Projeto_Livros/), desenvolvido como parte da disciplina de Programação Orientada a Objetos.
+Projeto back-end simples criado para estudo na manipulação de dados em coleções no MongoDB. A aplicação foi construída utilizando **Spring Boot** e o **MongoDB** como banco de dados, visando criar uma api para a consulta de informações de um projeto java pré-existente de um [Sistema de Gerenciamento de Livros](https://github.com/Thigas014/Projeto_Livros/), desenvolvido como parte da disciplina de Programação Orientada a Objetos.
 
 Membros 
 - Pedro Henrique Alexandre
 - Vinicius Cavalcante Pequeno
-- Thiago dos Santos Araújo
 
 ## Tecnologias Usadas
 
@@ -20,13 +19,17 @@ Membros
 
 ## Funcionalidades
 
-
+- **Consulta e visualização de livros cadastrados**
+- **Pesquisa de livros por título, gênero e autor**
+- **Cadastro de livros**
+- **Edição de livros**
+- **Remoção de livros**
 
 ## Estrutura dos Arquivos
 
 - **Controllers**: Responsáveis por definir os endpoints da API.
-- **Domain**: Representam as entidades do banco de dados e seus respectivos atributos.
-- **Repositories**: Arquivos que fazem a conexão com o banco de dados.
+- **Domain**: Representam a entidade Livro no banco de dados, com seus respectivos atributos.
+- **Repositories**: Implementa o MongoDBTemplate para realizar as consultas no banco.
 - **Services**: Contêm a lógica de negócio para manipular e consultar os dados.
 
 ## Como Executar
@@ -54,8 +57,29 @@ Membros
    mvn spring-boot:run
    ```
 
-4. Acesse a API em: `http://localhost:8080/api/{endpoint}`.
+4. Acesse a API em: `http://localhost:8080/{endpoint}`.
 
 ## Endpoints
 
+A API fornece os seguintes endpoints para a manipulação de dados da coleção livros.
+
+### Livro
+- **GET** `/api/livros/info/all`: Recupera todos os livros.
+- **GET** `/api/livros/info/title/{titulo}`: Recupera um livro pelo titulo.
+- **GET** `/api/livros/info/genre/{genero}`: Recupera todos os livros pelo gênero.
+- **GET** `/api/livros/info/author/{autor}`: Recupera todos os livros pelo autor.
+- **POST** `/api/livros/create`: Cria um novo livro.
+- **PUT** `/api/livros/title/{titulo}`: Atualiza um livro existente com base no título.
+- **DELETE** `/api/livros/delete/title/{titulo}`: Remove um livro pelo titulo.
+
 ## Estrutura dos Dados
+
+```json
+{
+   "id":"671307c32d2e95ab0382862e",
+   "title":"The Great Gatsby",
+   "author":"F. Scott Fitzgerald",
+   "genre": "Fiction",
+   "url":"https://example.com/the-great-gatsby"
+}
+```
