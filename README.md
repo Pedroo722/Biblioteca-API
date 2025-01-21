@@ -43,7 +43,7 @@ Membros
 
 1. Clone o repositório:
    ```bash
-   git clone https://github.com/Pedroo722/Biblioteca-API.git.git
+   git clone https://github.com/Pedroo722/Biblioteca-API.git
    cd seu-repositorio
    ```
 
