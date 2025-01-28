@@ -1,6 +1,6 @@
 # Biblioteca API
 
-Projeto back-end simples criado para estudo na manipulação de dados em coleções no MongoDB. A aplicação foi construída utilizando **Spring Boot** e o **MongoDB** como banco de dados, visando criar uma api para a consulta de informações de um projeto java pré-existente de um [Sistema de Gerenciamento de Livros](https://github.com/Thigas014/Projeto_Livros/), desenvolvido como parte da disciplina de Programação Orientada a Objetos.
+Projeto back-end simples criado para estudo na manipulação de dados em coleções no MongoDB. A aplicação foi construída utilizando **Spring Boot** e o **MongoDB** como banco de dados, visando criar uma api para a consulta e manipulações de informações de uma coleção de livros.
 
 Membros 
 - Pedro Henrique Alexandre
