@@ -120,7 +120,7 @@ A API fornece os seguintes endpoints para a manipulação de dados da coleção 
 
 ```json
 {
-   "id": number,
+   "id": 1,
    "name": "string",
    "phone": "string",
    "email": "string",
@@ -133,7 +133,7 @@ A API fornece os seguintes endpoints para a manipulação de dados da coleção 
 
 ```json
 {
-   "id": number,
+   "id": 1,
    "titulo": "string",
    "autor": "string",
    "status": "string",
@@ -148,14 +148,14 @@ A API fornece os seguintes endpoints para a manipulação de dados da coleção 
 
 ```json
 {
-   "id": number,
+   "id": 1,
    "title": "string",
    "name": "string",
    "email": "string",
    "fine": "string",
-   "loanDate": LocalDate,
-   "returnDate": LocalDate,
-   "returnDateReal": LocalDate,
+   "loanDate": 2025-01-01,
+   "returnDate": 2025-01-01,
+   "returnDateReal": 2025-01-01,
    "status": "string"
 }
 ```
