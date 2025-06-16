@@ -7,13 +7,6 @@ Membros
 - Vinicius Cavalcante Pequeno
 - Thiago dos Santos Araújo
 
-# Estrutura dos Arquivos
-
-- **Controllers**: Responsáveis por definir os endpoints da API.
-- **Domain**: Representam a entidade Livro no banco de dados, com seus respectivos atributos.
-- **Repositories**: Implementa o MongoDBTemplate para realizar as consultas no banco.
-- **Services**: Contêm a lógica de negócio para manipular e consultar os dados.
-
 ## Tecnologias Usadas
 
 <div align="center">
@@ -37,6 +30,50 @@ Membros
 - **Cadastro de Emprestimos**
 - **Finalização de Emprestimos**
 - **Cancelamento de Emprestimos**
+
+## Estrutura dos Arquivos
+
+- **Controllers**: Responsáveis por definir os endpoints da API.
+- **Domain**: Representam a entidade Livro no banco de dados, com seus respectivos atributos.
+- **Repositories**: Implementa o MongoDBTemplate para realizar as consultas no banco.
+- **Services**: Contêm a lógica de negócio para manipular e consultar os dados.
+
+```
+└── src/
+    ├── main/
+    │   └── java/
+    │       └── br/edu/ifpb/biblioteca/
+    │           ├── BibliotecaApplication.java
+    │           ├── config/
+    │           │   ├── ExceptionsHandler.java
+    │           │   └── WebConfig.java
+    │           ├── controller/
+    │           │   ├── AuthController.java
+    │           │   ├── BookControlller.java
+    │           │   ├── ClientController.java
+    │           │   ├── LoanController.java
+    │           │   └── UserController.java
+    │           ├── exceptions/
+    │           │   └── InvalidEmailException.java
+    │           ├── model/
+    │           │   ├── Book.java
+    │           │   ├── Client.java
+    │           │   ├── Loan.java
+    │           │   ├── Role.java
+    │           │   └── User.java
+    │           ├── repository/
+    │           │   ├── BookRepository.java
+    │           │   ├── ClientRepository.java
+    │           │   ├── LoanRepository.java
+    │           │   └── UserRepository.java
+    │           ├── service/
+    │           │   ├── BookService.java
+    │           │   ├── ClientService.java
+    │           │   ├── LoanService.java
+    │           │   └── UserService.java
+    │           └── util/
+    │               └── UserValidations.java
+```
 
 ## Como Executar
 ### Pré-requisitos
