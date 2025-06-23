@@ -2,7 +2,7 @@
 
 Projeto back-end simples criado para servir como a API de um sistema mobile de gerenciamento de uma biblioteca fictícia. A aplicação foi construída utilizando **Spring Boot** e o **PostgreSQL** como banco de dados.
 
-Membros 
+Membros:
 - Pedro Henrique Alexandre
 - Vinicius Cavalcante Pequeno
 - Thiago dos Santos Araújo
@@ -100,22 +100,45 @@ Membros
    mvn spring-boot:run
    ```
 
-4. Acesse a API em: `http://localhost:8080/{endpoint}`.
+4. Acesse a API em: `http://localhost:8081/{endpoint}`.
 
 ## Endpoints
 
-A API fornece os seguintes endpoints para a manipulação de dados da coleção livros.
+### Autenticação
+- **POST** `/auth/login`: Autentica um usuário e retorna um token JWT.
+- **POST** `/auth/signup`: Realiza o cadastro de um novo usuário.
 
-### Livro
-- **GET** `/api/livros/info/all`: Recupera todos os livros.
-- **GET** `/api/livros/info/title/{titulo}`: Recupera um livro pelo titulo.
-- **GET** `/api/livros/info/genre/{genero}`: Recupera todos os livros pelo gênero.
-- **GET** `/api/livros/info/author/{autor}`: Recupera todos os livros pelo autor.
-- **POST** `/api/livros/create`: Cria um novo livro.
-- **PUT** `/api/livros/title/{titulo}`: Atualiza um livro existente com base no título.
-- **DELETE** `/api/livros/delete/title/{titulo}`: Remove um livro pelo titulo.
+### Usuários
+- **GET** `/api/users/list`: Recupera todos os usuários cadastrados.
+- **GET** `/api/users/{email}`: Recupera um usuário pelo email.
+- **PUT** `/api/users/update/{email}`: Atualiza os dados de um usuário existente, baseado no email.
+- **DELETE** `/api/users/delete/{email}`: Deleta um usuário pelo email.
+
+### Livros
+- **GET** `/api/books/list`: Recupera todos os livros cadastrados, com a opção de filtrar por autor. A resposta é paginada.
+  - **Parâmetros de consulta (query parameters)**:
+    - `autor`: Filtra os livros pelo autor (opcional).
+    - `page`: Número da página para a paginação (padrão: 0).
+    - `size`: Número de itens por página (padrão: 10).
+- **GET** `/api/books/{id}`: Recupera um livro pelo seu ID.
+- **POST** `/api/books/create`: Cria um novo livro com as informações fornecidas.
+- **PUT** `/api/books/update/{id}`: Atualiza um livro existente, baseado no ID.
+- **DELETE** `/api/books/delete/{id}`: Deleta um livro pelo seu ID.
+
+### Empréstimos
+- **GET** `/api/loans/list`: Recupera todos os empréstimos, com a opção de filtrar por nome do cliente. A resposta é paginada.
+  - **Parâmetros de consulta (query parameters)**:
+    - `name`: Filtra os empréstimos pelo nome do cliente (opcional).
+    - `page`: Número da página para a paginação (padrão: 0).
+    - `size`: Número de itens por página (padrão: 10).
+- **GET** `/api/loans/{id}`: Recupera um empréstimo pelo seu ID.
+- **POST** `/api/loans/create`: Cria um novo empréstimo com as informações fornecidas.
+- **PUT** `/api/loans/update/{id}`: Atualiza um empréstimo existente, baseado no ID.
+- **DELETE** `/api/loans/delete/{id}`: Deleta um empréstimo pelo seu ID.
+
 
 ## Estrutura dos Dados
+
 ### Usuário
 
 ```json
@@ -153,9 +176,9 @@ A API fornece os seguintes endpoints para a manipulação de dados da coleção 
    "name": "string",
    "email": "string",
    "fine": "string",
-   "loanDate": 2025-01-01,
-   "returnDate": 2025-01-01,
-   "returnDateReal": 2025-01-01,
+   "loanDate": "2025-01-01",
+   "returnDate": "2025-01-01",
+   "returnDateReal": "2025-01-01",
    "status": "string"
 }
 ```
