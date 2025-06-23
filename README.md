@@ -40,39 +40,46 @@ Membros:
 
 ```
 └── src/
-    ├── main/
-    │   └── java/
-    │       └── br/edu/ifpb/biblioteca/
-    │           ├── BibliotecaApplication.java
-    │           ├── config/
-    │           │   ├── ExceptionsHandler.java
-    │           │   └── WebConfig.java
-    │           ├── controller/
-    │           │   ├── AuthController.java
-    │           │   ├── BookControlller.java
-    │           │   ├── ClientController.java
-    │           │   ├── LoanController.java
-    │           │   └── UserController.java
-    │           ├── exceptions/
-    │           │   └── InvalidEmailException.java
-    │           ├── model/
-    │           │   ├── Book.java
-    │           │   ├── Client.java
-    │           │   ├── Loan.java
-    │           │   ├── Role.java
-    │           │   └── User.java
-    │           ├── repository/
-    │           │   ├── BookRepository.java
-    │           │   ├── ClientRepository.java
-    │           │   ├── LoanRepository.java
-    │           │   └── UserRepository.java
-    │           ├── service/
-    │           │   ├── BookService.java
-    │           │   ├── ClientService.java
-    │           │   ├── LoanService.java
-    │           │   └── UserService.java
-    │           └── util/
-    │               └── UserValidations.java
+    └── main/
+        └── java/
+            └── br/edu/ifpb/biblioteca/
+                ├── BibliotecaApplication.java
+                ├── config/
+                │   ├── ExceptionsHandler.java
+                │   └── WebConfig.java
+                ├── controller/
+                │   ├── AuthController.java
+                │   ├── BookController.java
+                │   ├── ClientController.java
+                │   ├── LoanController.java
+                │   └── UserController.java
+                ├── exceptions/
+                │   ├── BookNotFoundException.java
+                │   ├── ClientNotFoundException.java
+                │   ├── InvalidCredentialsException.java
+                │   ├── InvalidEmailException.java
+                │   ├── JwtTokenException.java
+                │   ├── LoanNotFoundException.java
+                │   ├── UnauthorizedAccessException.java
+                │   └── UserNotFoundException.java
+                ├── model/
+                │   ├── Book.java
+                │   ├── Client.java
+                │   ├── Loan.java
+                │   ├── Role.java
+                │   └── User.java
+                ├── repository/
+                │   ├── BookRepository.java
+                │   ├── ClientRepository.java
+                │   ├── LoanRepository.java
+                │   └── UserRepository.java
+                ├── service/
+                │   ├── BookService.java
+                │   ├── ClientService.java
+                │   ├── LoanService.java
+                │   └── UserService.java
+                └── util/
+                    └── UserValidations.java
 ```
 
 ## Como Executar
