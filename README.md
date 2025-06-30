@@ -34,8 +34,8 @@ Membros:
 ## Estrutura dos Arquivos
 
 - **Controllers**: Responsáveis por definir os endpoints da API.
-- **Domain**: Representam a entidade Livro no banco de dados, com seus respectivos atributos.
-- **Repositories**: Implementa o MongoDBTemplate para realizar as consultas no banco.
+- **Domain**: Representam a entidades da biblioteca no banco de dados, com seus respectivos atributos.
+- **Repositories**: Extende a classe JpaRepository para realizar as consultas no banco.
 - **Services**: Contêm a lógica de negócio para manipular e consultar os dados.
 
 ```
