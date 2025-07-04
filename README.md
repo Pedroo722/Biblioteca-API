@@ -50,12 +50,10 @@ Membros:
                 ├── controller/
                 │   ├── AuthController.java
                 │   ├── BookController.java
-                │   ├── ClientController.java
                 │   ├── LoanController.java
                 │   └── UserController.java
                 ├── exceptions/
                 │   ├── BookNotFoundException.java
-                │   ├── ClientNotFoundException.java
                 │   ├── InvalidCredentialsException.java
                 │   ├── InvalidEmailException.java
                 │   ├── JwtTokenException.java
@@ -64,18 +62,15 @@ Membros:
                 │   └── UserNotFoundException.java
                 ├── model/
                 │   ├── Book.java
-                │   ├── Client.java
                 │   ├── Loan.java
                 │   ├── Role.java
                 │   └── User.java
                 ├── repository/
                 │   ├── BookRepository.java
-                │   ├── ClientRepository.java
                 │   ├── LoanRepository.java
                 │   └── UserRepository.java
                 ├── service/
                 │   ├── BookService.java
-                │   ├── ClientService.java
                 │   ├── LoanService.java
                 │   └── UserService.java
                 └── util/

@@ -42,6 +42,12 @@ public class User implements UserDetails {
     @Column(name = "role", nullable = false)
     private Role role;
 
+    @Column(name = "phone", nullable = false, length = 20)
+    private String phone;
+
+    @Column(name = "address", nullable = false, length = 255)
+    private String address;
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         List<GrantedAuthority> authorities = new ArrayList<>();

@@ -32,12 +32,17 @@ public class UserService implements UserDetailsService {
 
     public List<UserResponseDTO> getAllUsers() {
         List<User> allUsers = userRepository.findAll();
-        return allUsers.stream().map(user -> new UserResponseDTO(user.getName(), user.getEmail())).collect(Collectors.toList());
+        return allUsers.stream()
+                .filter(user -> user.getRole() != Role.ADMIN)
+                .map(user ->
+                    new UserResponseDTO(user.getName(), user.getEmail(),
+                                        user.getPhone(), user.getAddress()))
+                .collect(Collectors.toList());
     }
 
     public UserResponseDTO getUserByEmail(String email) {
         User userFound = findUserByEmail(email);
-        return new UserResponseDTO(userFound.getName(), userFound.getEmail());
+        return new UserResponseDTO(userFound.getName(), userFound.getEmail(), userFound.getPhone(), userFound.getAddress());
     }
 
     public User saveUser(RegisterUserRequestDTO user) {
@@ -47,6 +52,8 @@ public class UserService implements UserDetailsService {
         newUser.setName(user.name());
         newUser.setEmail(user.email());
         newUser.setPassword(passwordEncoder.encode(user.password()));
+        newUser.setPhone(user.phone());
+        newUser.setAddress(user.address());
         newUser.setRole(Role.USER);
 
         return userRepository.save(newUser);
@@ -64,9 +71,11 @@ public class UserService implements UserDetailsService {
 
         userToEdit.setName(user.name());
         userToEdit.setPassword(passwordEncoder.encode(user.password()));
+        userToEdit.setPhone(user.phone());
+        userToEdit.setAddress(user.address());
         userRepository.save(userToEdit);
 
-        return new UserResponseDTO(userToEdit.getName(), userToEdit.getEmail());
+        return new UserResponseDTO(userToEdit.getName(), userToEdit.getEmail(), userToEdit.getPhone(), userToEdit.getAddress());
     }
 
     public void deleteUser(String email) {
