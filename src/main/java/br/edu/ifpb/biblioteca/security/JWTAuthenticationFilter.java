@@ -24,9 +24,19 @@ public class JWTAuthenticationFilter extends OncePerRequestFilter {
     @Autowired
     private UserService userService;
 
+    private static final String[] PUBLIC_ENDPOINTS = { "/auth/login", "/auth/signup", "/users/list", "/books/list" };
+
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
-            throws ServletException, IOException {
+        throws ServletException, IOException {
+
+        String requestURI = request.getRequestURI();
+        for (String publicEndpoint : PUBLIC_ENDPOINTS) {
+            if (requestURI.startsWith(publicEndpoint)) {
+                filterChain.doFilter(request, response);
+                return;
+            }
+        }
 
         String jwt = getJwtFromRequest(request);
 

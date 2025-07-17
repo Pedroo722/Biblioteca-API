@@ -43,6 +43,8 @@ public class WebSecurityConfig {
                 
                 .requestMatchers(HttpMethod.GET, "/users/**").permitAll()
                 
+                .requestMatchers(HttpMethod.GET, "/books/**").permitAll()
+                
                 .anyRequest().authenticated()
             )
             .sessionManagement(management -> management
