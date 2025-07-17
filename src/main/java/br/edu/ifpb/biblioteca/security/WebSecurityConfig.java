@@ -42,7 +42,6 @@ public class WebSecurityConfig {
                 .permitAll()
                 
                 .requestMatchers(HttpMethod.GET, "/users/**").permitAll()
-                
                 .requestMatchers(HttpMethod.GET, "/books/**").permitAll()
                 
                 .anyRequest().authenticated()
