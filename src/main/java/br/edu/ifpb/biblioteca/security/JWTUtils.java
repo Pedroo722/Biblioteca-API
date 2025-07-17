@@ -4,15 +4,15 @@ import java.util.Date;
 
 import javax.crypto.SecretKey;
 
-import br.edu.ifpb.biblioteca.exceptions.JwtTokenException;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-import io.jsonwebtoken.security.Keys;
-import io.jsonwebtoken.Jwts;
+import br.edu.ifpb.biblioteca.exceptions.JwtTokenException;
 import io.jsonwebtoken.ExpiredJwtException;
+import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.MalformedJwtException;
 import io.jsonwebtoken.UnsupportedJwtException;
+import io.jsonwebtoken.security.Keys;
 import io.jsonwebtoken.security.SignatureException;
 
 @Component
@@ -59,7 +59,7 @@ public class JWTUtils {
         } catch (ExpiredJwtException ex) {
             throw new JwtTokenException("Token expirado! É preciso fazer login novamente.");
         } catch (UnsupportedJwtException | MalformedJwtException
-                 | SignatureException ex) {
+                | SignatureException ex) {
             throw new JwtTokenException("Token inválido!");
         } catch (Exception ex) {
             throw new JwtTokenException("Erro de autenticação: " + ex.getMessage());
