@@ -64,4 +64,8 @@ public class User implements UserDetails {
     public String getPassword() {
         return password;
     }
+
+    public Role getRole() {
+        return role;
+    }
 }

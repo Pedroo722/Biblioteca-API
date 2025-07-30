@@ -45,14 +45,15 @@ public class AuthController {
             User userDetails = (User) authentication.getPrincipal();
 
             String jwtToken = jwtUtils.generateJwtToken(userDetails.getUsername());
+            String userRole = userDetails.getRole().name();  // Pega o papel (role) do usuário
 
-            return ResponseEntity.ok(new LoginResponseDTO("Autenticação realizada com sucesso!", jwtToken));
+            return ResponseEntity.ok(new LoginResponseDTO("Autenticação realizada com sucesso!", jwtToken, userRole));
         } catch (BadCredentialsException e) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
-                    .body(new LoginResponseDTO("Credenciais inválidas", null));
+                    .body(new LoginResponseDTO("Credenciais inválidas", null, null));
         } catch (AuthenticationException e) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
-                    .body(new LoginResponseDTO("Erro de autenticação", null));
+                    .body(new LoginResponseDTO("Erro de autenticação", null, null));
         }
     }
 
